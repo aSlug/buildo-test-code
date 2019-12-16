@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node ."
+    "start": "node .",
+    "test": "mocha 'dist/test/**/*.test.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
-    "@types/morgan": "^1.7.37"
+    "@types/morgan": "^1.7.37",
+    "@types/mocha": "^5.2.7"
   }
 }
