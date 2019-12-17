@@ -20,4 +20,6 @@ app.use('/', routes.router);
 app.listen(port, () => {
     // tslint:disable-next-line: no-console
     console.log( `Server started at http://localhost:${ port }` );
+    // tslint:disable-next-line: no-console
+    console.log( `Check documentation at http://localhost:${ port }/api-docs` );
 });
