@@ -43,6 +43,10 @@ describe('stateAccess module', () => {
             stateAccess.saveNewConfiguration(mock.barConfig);
             assert.equal(mock.barConfig, State.configurations.get('bar'));
         });
+        it('throws error when trying to save duplicates', () => {
+            stateAccess.saveNewConfiguration(mock.barConfig);
+            assert.throws(() => stateAccess.saveNewConfiguration(mock.barConfig), Error);
+        });
     });
 
     describe('updateConfiguration()', () => {
@@ -58,6 +62,9 @@ describe('stateAccess module', () => {
             stateAccess.updateConfiguration(mock.fooConfigUpdated);
             assert.equal(mock.barConfig, State.configurations.get('bar'));
         });
+        it('throws error when trying to update not existing configurations', () => {
+            assert.throws(() => stateAccess.updateConfiguration(mock.barConfig), Error);
+        });
     });
 
     describe('deleteConfiguration()', () => {
@@ -72,6 +79,9 @@ describe('stateAccess module', () => {
             State.configurations.set('bar', mock.barConfig);
             stateAccess.deleteConfiguration('foo');
             assert.equal(mock.barConfig, State.configurations.get('bar'));
+        });
+        it('throws error when trying to delete not existing configurations', () => {
+            assert.throws(() => stateAccess.deleteConfiguration('foo'), Error);
         });
     });
 
