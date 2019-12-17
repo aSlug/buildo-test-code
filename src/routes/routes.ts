@@ -6,8 +6,10 @@ export const router = express.Router();
 
 /* GET default */
 router.get('/', (req, res, next) => {
+
   res.status(200);
   res.json(stateAccess.getAllConfigurations());
+
 });
 
 /* GET specific configuration */

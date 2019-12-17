@@ -15,21 +15,21 @@ export function getAllConfigurations(): Configuration[] {
 
 export function saveNewConfiguration(config: Configuration) {
     if (State.configurations.has(config.id)) {
-        throw new Error();
+        throw new Error('Unable to save a duplicate configuration');
     }
     State.configurations.set(config.id, config);
 }
 
 export function updateConfiguration(config: Configuration) {
     if (!State.configurations.has(config.id)) {
-        throw new Error();
+        throw new Error('Unable to update not existing configuration');
     }
     State.configurations.set(config.id, config);
 }
 
 export function deleteConfiguration(id: string) {
     if (!State.configurations.has(id)) {
-        throw new Error();
+        throw new Error('Unable to delete unexisting configuration');
     }
     State.configurations.delete(id);
 }
