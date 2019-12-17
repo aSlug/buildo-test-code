@@ -33,7 +33,9 @@ router.get('/:id', (req, res, next) => {
 /* POST configuration */
 router.post('/:id', (req, res, next) => {
 
-  if (!req.body.name || !req.body.value) {
+  if (!req.body.name || !req.body.value
+    || typeof req.body.name !== 'string'
+    || typeof req.body.value !== 'string') {
 
     // the payload is missing mandatory data
     res.sendStatus(400);
@@ -66,7 +68,9 @@ router.post('/:id', (req, res, next) => {
 /* PUT configuration */
 router.put('/:id', (req, res, next) => {
 
-  if (!req.body.name || !req.body.value) {
+  if (!req.body.name || !req.body.value
+    || typeof req.body.name !== 'string'
+    || typeof req.body.value !== 'string') {
 
     // the payload is missing mandatory data
     res.sendStatus(400);
