@@ -1,5 +1,5 @@
 import express from 'express';
-import * as stateAccess from '../state/stateAccesss';
+import * as stateAccess from '../state/stateAccess';
 import { Configuration } from './../models/configuration';
 
 export const router = express.Router();
@@ -39,7 +39,7 @@ router.post('/:id', (req, res, next) => {
   } else if (req.body.id && req.body.id !== req.params.id) {
 
     // the id field of the configuration object is
-    // explicitely defined but does non match the name of resource
+    // explicitely defined but does not match the name of resource
     res.sendStatus(422);
 
   } else if (stateAccess.existsConfiguration(req.params.id)) {
