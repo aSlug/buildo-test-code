@@ -1,6 +1,6 @@
 swagger: "2.0"
 info:
-  description: "Save and retrieve configurations"
+  description: "Store configurations"
   version: "1.0.0"
   title: "Buildo-test-code"
 host: "localhost:3000"
@@ -31,7 +31,6 @@ paths:
       tags:
       - "configurations"
       summary: "Add a new configuration"
-      description: "Declare `name` and `value` of the configuration to be stored. `id` is not required but if present it must match the resource name. Any other field will be ignored."
       consumes:
       - "application/json"
       produces:
@@ -44,7 +43,7 @@ paths:
         type: string
       - in: "body"
         name: "body"
-        description: "Configuration object that needs to be stored"
+        description: "Configuration object that needs to be stored. \n Declare `name` and `value` of the configuration to be updated. `id` is not required but if present it must match the resource name. Any other field will be ignored. "
         required: true
         schema:
           $ref: "#/definitions/Configuration"
@@ -61,7 +60,6 @@ paths:
       tags:
       - "configurations"
       summary: "Update an existing configuration"
-      description: "Declare `name` and `value` of the configuration to be updated. `id` is not required but if present it must match the resource name. Any other field will be ignored."
       consumes:
       - "application/json"
       produces:
@@ -74,7 +72,7 @@ paths:
         type: string
       - in: "body"
         name: "body"
-        description: "Configuration object that needs to be updated"
+        description: "Configuration object that needs to be updated. \n Declare updated `name` and `value` fileds. `id` is not required but if present it must match the resource name. Any other field will be ignored. "
         required: true
         schema:
           $ref: "#/definitions/Configuration"
@@ -91,7 +89,6 @@ paths:
       tags:
       - "configurations"
       summary: "Find configuration"
-      description: "Multiple status values can be provided with comma separated strings"
       produces:
       - "application/json"
       parameters:
@@ -128,7 +125,6 @@ definitions:
     properties:
       id:
         type: "string"
-        description: "Not required, but if present it must match the resource name"
       name:
         type: "string"
       value:
