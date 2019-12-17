@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/', routes.router);
 
-app.listen( port, () => {
+app.listen(port, () => {
     // tslint:disable-next-line: no-console
     console.log( `Server started at http://localhost:${ port }` );
 });
