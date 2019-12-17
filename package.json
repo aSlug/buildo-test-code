@@ -2,11 +2,13 @@
   "name": "buildo-code-test",
   "version": "0.0.0",
   "private": true,
-  "main": "dist/index.js",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node ."
+    "start": "node .",
+    "pretest": "tsc",
+    "test": "mocha 'dist/test/**/*.test.js'"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -15,10 +17,15 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
+    "supertest": "~4.0.2",
+    "swagger-ui-express": "^4.1.2",
     "tslint": "^5.20.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
-    "@types/morgan": "^1.7.37"
+    "@types/mocha": "^5.2.7",
+    "@types/morgan": "^1.7.37",
+    "@types/supertest": "^2.0.8",
+    "@types/swagger-ui-express": "^4.1.0"
   }
 }
