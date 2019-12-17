@@ -1,0 +1,201 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Store configurations",
+    "version": "1.0.0",
+    "title": "Buildo-test-code"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "configurations",
+      "description": "Query all configurations"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "tags": [
+          "configurations"
+        ],
+        "summary": "Query all configurations",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Configuration"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{id}": {
+      "post": {
+        "tags": [
+          "configurations"
+        ],
+        "summary": "Add a new configuration",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of configuration",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Configuration object that needs to be stored. \n Declare `name` and `value` of the configuration to be updated. `id` is not required but if present it must match the resource name. Any other field will be ignored. ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Configuration"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Configuration created"
+          },
+          "400": {
+            "description": "`name` or `value` fields missing"
+          },
+          "409": {
+            "description": "The resource already exists"
+          },
+          "422": {
+            "description": "The `id` field doesn't match the resource name"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "configurations"
+        ],
+        "summary": "Update an existing configuration",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "text/plain"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of configuration",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Configuration object that needs to be updated. \n Declare updated `name` and `value` fileds. `id` is not required but if present it must match the resource name. Any other field will be ignored. ",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Configuration"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Configuration updated"
+          },
+          "400": {
+            "description": "`name` or `value` fields missing"
+          },
+          "404": {
+            "description": "The resource doesn't exists"
+          },
+          "422": {
+            "description": "The `id` field doesn't match the resource name"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "configurations"
+        ],
+        "summary": "Find configuration",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of configuration",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "schema": {
+              "$ref": "#/definitions/Configuration"
+            }
+          },
+          "404": {
+            "description": "The configuration doesn't exists"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "configurations"
+        ],
+        "summary": "Delete configuration",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "ID of configuration",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful operation"
+          },
+          "404": {
+            "description": "The configuration doesn't exists"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Configuration": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
